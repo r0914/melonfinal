@@ -48,7 +48,8 @@ public class TestATM {
 	{
 		int current = m_myAcc.getBalance();
 
-		System.out.println("Current balance: "+ current + " JPY");
+		System.out.println("残高: "+ current + "　円");
 	}
+	
 }
 
