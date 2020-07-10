@@ -5,22 +5,13 @@ public class Main {
 
 	public static void main (String [] args)
 	{
-
-		//***********************************
-		// 課題 [1]
-		//***********************************
-
 		//MyAccount インスタンス化
 		MyAccount myAcc = new MyAccount();
 
 		Scanner in = new Scanner(System.in);
 		Scanner ne = new Scanner(System.in);
 		Scanner sc = new Scanner(System.in);
-		//以下、学籍番号G20194の例：
-		//ランダムなアカウント作成
 
-		String user_name=null;
-	    int balance=0;
 	    int withdraw=0;
 	    int despot=0;
 		int account=0;
@@ -43,7 +34,7 @@ public class Main {
 		TestATM atm = new TestATM(myAcc);
 		
 		int number=0;
-		
+		//システムの切替
 		for(;;) {
 		System.out.println("1. 入金");
 		System.out.println("2. 出金");
@@ -51,7 +42,7 @@ public class Main {
 		System.out.println("4. 終了");
 		System.out.println("1〜4の数字を選択してください");
 		number=sc.nextInt();
-		
+		//入金処理
 		if(number==1) {
 	       System.out.print("入金額を入力してください: ");
 	       despot=in.nextInt();
@@ -59,17 +50,21 @@ public class Main {
 	       atm.deposit(despot); //入金処理
 	       atm.showCurrentBalance(); //表示
 		}
+		//出金処理
 		if(number==2) {
 			if(myAcc.m_balance==0)
 	        System.out.print("残高がありません");
 			else{
 				System.out.print("引き出し額を入力してください: ");
 		        withdraw=in.nextInt();  //出金希望額
+		       // atm.withdraw(str);
 		        atm.withdraw(withdraw); //出金処理
 		        atm.showCurrentBalance(); //表示
 	        }
 		}
+		//残高照会
 		if(number==3) atm.showCurrentBalance();
+		//システム終了
 		if(number==4) break;
 		}
 

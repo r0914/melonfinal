@@ -2,6 +2,9 @@
 
 package bank;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 public class TestATM {
 
 	//メンバ変数
@@ -23,7 +26,7 @@ public class TestATM {
 		m_myAcc.setBalance(current + cash_deposit);
 	}
 
-	//出金処理
+	//出金処理、時間帯によって手数料がかかる
 	public void withdraw(int cash_want)
 	{
 		//現在の残高取得
@@ -39,7 +42,23 @@ public class TestATM {
 		//出金できる場合、残高を更新（現在の残高-出金額）
 		else
 		{
-			m_myAcc.setBalance(current - cash_want);
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		    SimpleDateFormat sdf = new SimpleDateFormat("kmm");
+		    String str = sdf.format(timestamp);
+		    int time = Integer.parseInt(str);
+		    
+		    SimpleDateFormat sdf1 = new SimpleDateFormat("u");
+		    String str1 = sdf1.format(timestamp);
+		    int day = Integer.parseInt(str1);
+		    
+			if((800<time&&time<1800)&&(day!=6)&&(day!=7)) {
+				System.out.println("この時間は手数料がかかりません");
+				m_myAcc.setBalance(current - cash_want);
+			}
+			else {
+				System.out.println("この時間は手数料が500円かかります");
+			m_myAcc.setBalance(current - (cash_want+500));
+			}
 		}
 	}
 
