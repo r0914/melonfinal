@@ -1,10 +1,11 @@
+
 package bank;
 
 public class MyAccount {
 
-	private int m_accNum;
-	private int m_password;
-	private int m_balance;
+	int m_accNum;
+	int m_password;
+	int m_balance;
 
 	//Constructor
 	public MyAccount()
